@@ -1,5 +1,4 @@
-import { Archive, ChevronDown, Flag, Github } from "lucide-react";
-import Image from "next/image";
+import { Archive, ChevronDown, Flag, Github, MenuIcon } from "lucide-react";
 import React, { useContext, useEffect, useState } from "react";
 import SideNavTopSection, { TEAM } from "./SideNavTopSection";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
@@ -8,7 +7,8 @@ import { useConvex, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 import { FileListContext } from "@/app/_context/FileListContext";
-// import { FileListContext } from '@/app/_context/FilesListContext'
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
 
 function SideNav() {
   const { user }: any = useKindeBrowserClient();
@@ -16,12 +16,13 @@ function SideNav() {
   const [activeTeam, setActiveTeam] = useState<TEAM | any>();
   const convex = useConvex();
   const [totalFiles, setTotalFiles] = useState<Number>();
-  const {fileList_,setFileList_}=useContext(FileListContext);
+  const { fileList_, setFileList_ } = useContext(FileListContext);
+
   useEffect(() => {
     activeTeam && getFiles();
   }, [activeTeam]);
+
   const onFileCreate = (fileName: string) => {
-    console.log(fileName);
     createFile({
       fileName: fileName,
       teamId: activeTeam?._id,
@@ -46,26 +47,41 @@ function SideNav() {
     const result = await convex.query(api.files.getFiles, {
       teamId: activeTeam?._id,
     });
-    console.log(result);
     setFileList_(result);
     setTotalFiles(result?.length);
   };
 
   return (
-    <div
-      className=" h-screen 
-    fixed w-72 borde-r border-[1px] p-6
-    flex flex-col
-    "
-    >
-      <div className="flex-1">
+    <div className="h-screen flex flex-col">
+      {/* Mobile Sidebar - visible on small screens */}
+      <div className="md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button className="m-4" variant="outline" size="icon">
+              <MenuIcon className="h-5 w-5" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-64 p-4">
+            <SideNavTopSection
+              user={user}
+              setActiveTeamInfo={(activeTeam: TEAM) =>
+                setActiveTeam(activeTeam)
+              }
+            />
+            <SideNavBottomSection
+              totalFiles={totalFiles}
+              onFileCreate={onFileCreate}
+            />
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      {/* Desktop Sidebar - visible on medium and larger screens */}
+      <div className="hidden md:flex h-full w-64 fixed p-6 border-r border-gray-200 flex-col">
         <SideNavTopSection
           user={user}
           setActiveTeamInfo={(activeTeam: TEAM) => setActiveTeam(activeTeam)}
         />
-      </div>
-
-      <div>
         <SideNavBottomSection
           totalFiles={totalFiles}
           onFileCreate={onFileCreate}
