@@ -7,8 +7,10 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs";
 import { useConvex, useMutation, useQuery } from "convex/react";
 import React, { useEffect } from "react";
-import Header from "./_components/Header";
+
 import FileList from "./_components/FileList";
+import AdBanner from "@/app/_components/AdBanner";
+import Header from "./_components/Header";
 
 function Dashboard() {
   const convex = useConvex();
@@ -38,11 +40,11 @@ function Dashboard() {
     <div className="p-8">
       <Header />
       <FileList />
-      {/* <AdBanner
+      <AdBanner
           data-ad-slot="4796371341"
           data-ad-format="auto"
           data-full-width-responsive="true"
-        /> */}
+        />
     </div>
   );
 }

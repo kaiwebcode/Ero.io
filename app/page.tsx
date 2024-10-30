@@ -13,7 +13,7 @@ export default function Home() {
   }, [user])
 
   return (
-    <div >
+    <div className="flex flex-col min-h-screen">
       <Header/>
       <Hero />
     </div>
