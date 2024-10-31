@@ -59,7 +59,7 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
     }
   };
   return (
-    <div className="mb-32">
+    <div>
           <h1 className="font-bold pb-6 text-3xl p-2 flex justify-start">
             Ero.io
           </h1>

@@ -39,7 +39,7 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
   ];
   const [fileInput, setFileInput] = useState("");
   return (
-    <div>
+    <div className="mt-72">
       {menuList.map((menu, index) => (
         <h2
           key={index}

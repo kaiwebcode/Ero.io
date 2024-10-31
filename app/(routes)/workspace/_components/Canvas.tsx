@@ -33,10 +33,10 @@ function Canvas({
   };
 
   return (
-    <div className="h-screen">
+    <div className="min-h-screen p-1 md:p-8">
       {fileData && (
         <Excalidraw
-          theme="dark"
+          // theme="dark"
           onChange={(excalidrawElements) =>
             setWhiteBoardData(excalidrawElements)
           }

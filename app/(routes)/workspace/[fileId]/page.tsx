@@ -6,7 +6,6 @@ import Editor from "../_components/Editor";
 import { useConvex } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FILE } from "../../dashboard/_components/FileList";
-import { use } from "react";
 import { Id } from "@/convex/_generated/dataModel"; // Adjust the path if necessary
 import Canvas from "../_components/Canvas";
 
@@ -15,8 +14,7 @@ function Workspace({ params }: { params: { fileId: string } }) {
   const convex = useConvex();
   const [fileData, setFileData] = useState<FILE | any>(null);
 
-  // Use the params directly instead of using `use`
-  const { fileId } = params; // Destructure the fileId directly from params
+  const { fileId } = params;
 
   useEffect(() => {
     if (fileId) {
@@ -33,25 +31,25 @@ function Workspace({ params }: { params: { fileId: string } }) {
   };
 
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <WorkspaceHeader onSave={() => setTriggerSave(!triggerSave)} />
 
-      {/* Workspace Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
+      {/* Responsive Workspace Layout */}
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Document */}
-        <div>
+        <div className="flex flex-col h-full">
           <Editor
             onSaveTrigger={triggerSave}
-            fileId={fileId} // Use the destructured fileId
+            fileId={fileId}
             fileData={fileData}
           />
         </div>
 
-        {/* Whiteboard/canvas */}
-        <div className="h-screen border-l ">
+        {/* Whiteboard/Canvas */}
+        <div className="flex flex-col h-full border-l border-gray-300">
           <Canvas
             onSaveTrigger={triggerSave}
-            fileId={fileId} // Use the destructured fileId
+            fileId={fileId}
             fileData={fileData}
           />
         </div>

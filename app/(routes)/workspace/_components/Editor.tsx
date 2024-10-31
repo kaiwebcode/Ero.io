@@ -132,8 +132,8 @@ function Editor({ onSaveTrigger, fileId, fileData }: { onSaveTrigger: any; fileI
   };
 
   return (
-    <div>
-      <div ref={holderRef} id="editorjs" className="ml-20"></div>
+    <div className="px-4 sm:px-8 md:px-16 lg:px-20">
+      <div ref={holderRef} id="editorjs" className="min-h-screen"></div>
     </div>
   );
 }
