@@ -36,12 +36,12 @@ function DashboardLayout({
     <div className="flex min-h-screen">
       <FileListContext.Provider value={{ fileList_, setFileList_ }}>
         {/* Sidebar */}
-        <div className="md:h-screen md:fixed bg-gray-100 z-10">
+        <div className="md:h-screen md:fixed bg-gray-200 z-10">
           <SideNav />
 
         {/* Main content */}
         </div>
-        <div className="flex-1 md:ml-64 p-4 overflow-auto">
+        <div className="flex-1 md:ml-64 overflow-auto">
           {children}
         </div>
       </FileListContext.Provider>

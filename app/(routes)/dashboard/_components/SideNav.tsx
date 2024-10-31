@@ -52,7 +52,7 @@ function SideNav() {
   };
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className=" flex flex-col borde-r border-[1px] ">
       {/* Mobile Sidebar - visible on small screens */}
       <div className="md:hidden">
         <Sheet>
@@ -62,16 +62,21 @@ function SideNav() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-4">
+            <div className="flex-1">
             <SideNavTopSection
               user={user}
               setActiveTeamInfo={(activeTeam: TEAM) =>
                 setActiveTeam(activeTeam)
               }
-            />
+              />
+              </div>
+              <div>
+
             <SideNavBottomSection
               totalFiles={totalFiles}
               onFileCreate={onFileCreate}
-            />
+              />
+              </div>
           </SheetContent>
         </Sheet>
       </div>
