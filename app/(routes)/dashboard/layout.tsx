@@ -33,10 +33,10 @@ function DashboardLayout({
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen ">
       <FileListContext.Provider value={{ fileList_, setFileList_ }}>
         {/* Sidebar */}
-        <div className="md:h-screen md:fixed bg-gray-200 z-10">
+        <div className="md:h-screen md:fixed z-10 ">
           <SideNav />
 
         {/* Main content */}

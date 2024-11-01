@@ -43,7 +43,15 @@ const safeParseJSON = (jsonString: string) => {
   }
 };
 
-function Editor({ onSaveTrigger, fileId, fileData }: { onSaveTrigger: any; fileId: any; fileData: FILE }) {
+function Editor({
+  onSaveTrigger,
+  fileId,
+  fileData,
+}: {
+  onSaveTrigger: any;
+  fileId: any;
+  fileData: FILE;
+}) {
   const editorRef = useRef<EditorJS | null>(null);
   const holderRef = useRef<HTMLDivElement | null>(null);
   const updateDocument = useMutation(api.files.updateDocument);
@@ -68,7 +76,10 @@ function Editor({ onSaveTrigger, fileId, fileData }: { onSaveTrigger: any; fileI
   }, [onSaveTrigger]);
 
   const initEditor = () => {
-    const editorData = fileData && fileData.document ? safeParseJSON(fileData.document) : rawDocument;
+    const editorData =
+      fileData && fileData.document
+        ? safeParseJSON(fileData.document)
+        : rawDocument;
     editorRef.current = new EditorJS({
       holder: holderRef.current?.id || "editorjs",
       data: editorData,

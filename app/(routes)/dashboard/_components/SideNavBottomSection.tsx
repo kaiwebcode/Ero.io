@@ -62,23 +62,24 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
           </Button>
         </DialogTrigger>
         {totalFiles < Constant.MAX_FREE_FILE ? (
-          <DialogContent>
+          <DialogContent className="p-6 sm:p-8 max-w-md mx-auto bg-white rounded-md shadow-md">
             <DialogHeader>
-              <DialogTitle>Create New File</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="text-lg sm:text-xl font-semibold text-center">
+                Create New File
+              </DialogTitle>
+              <DialogDescription className="mt-2 text-center">
                 <Input
                   placeholder="Enter File Name"
-                  className="mt-3"
+                  className="mt-3 w-full p-2 border rounded-md"
                   onChange={(e) => setFileInput(e.target.value)}
                 />
               </DialogDescription>
             </DialogHeader>
-            <DialogFooter className="">
+            <DialogFooter className="flex justify-center mt-4">
               <DialogClose asChild>
                 <Button
                   type="button"
-                  className="bg-blue-600
-            hover:bg-blue-700"
+                  className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white"
                   disabled={!(fileInput && fileInput.length > 3)}
                   onClick={() => onFileCreate(fileInput)}
                 >

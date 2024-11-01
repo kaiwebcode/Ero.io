@@ -52,7 +52,7 @@ function SideNav() {
   };
 
   return (
-    <div className=" flex flex-col borde-r border-[1px] ">
+    <div className=" flex flex-col border-r h-screen">
       {/* Mobile Sidebar - visible on small screens */}
       <div className="md:hidden">
         <Sheet>

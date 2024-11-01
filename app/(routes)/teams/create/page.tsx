@@ -14,12 +14,12 @@ function CreateTeam() {
   const createTeam = useMutation(api.teams.createTeam);
   const { user }: any = useKindeBrowserClient();
   const router = useRouter();
+  
   const createNewTeam = () => {
     createTeam({
       teamName: teamName,
       createdBy: user?.email,
     }).then((resp) => {
-      console.log(resp);
       if (resp) {
         router.push("/dashboard");
         toast("Team created successfully!!!");
@@ -28,25 +28,25 @@ function CreateTeam() {
   };
 
   return (
-    <div className="p-10">
-      <h1 className="text-4xl  font-bold">Ero.io</h1>
-      <div className="flex flex-col items-center mt-20 ">
-        <h2 className="font-bold text-[40px] py-3">
+    <div className="p-6 sm:p-10 max-w-lg mx-auto">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center">Ero.io</h1>
+      <div className="flex flex-col items-center mt-20 sm:mt-28 gap-4">
+        <h2 className="font-bold text-3xl sm:text-[40px] text-center sm:py-3">
           What should we call your team?
         </h2>
-        <h2 className="text-gray-500">
+        <h2 className="text-gray-500 text-center text-sm sm:text-base">
           You can always change this later from settings.
         </h2>
-        <div className="mt-7 w-[40%]">
-          <label className="text-gray-500">Team Name</label>
+        <div className="mt-6 sm:mt-7 w-full sm:w-[70%]">
+          <label className="text-gray-500 block mb-2">Team Name</label>
           <Input
-            placeholder="Team Name"
-            className="mt-3"
+            placeholder="Enter team Name..."
+            className="w-full mt-2 p-2 border rounded-md"
             onChange={(e) => setTeamName(e.target.value)}
           />
         </div>
         <Button
-          className="bg-blue-600 mt-9 w-[30%] hover:bg-blue-800"
+          className="bg-blue-600 mt-6 sm:mt-9 w-full sm:w-[50%] hover:bg-blue-800 p-2 rounded text-white"
           disabled={!(teamName && teamName?.length > 0)}
           onClick={() => createNewTeam()}
         >

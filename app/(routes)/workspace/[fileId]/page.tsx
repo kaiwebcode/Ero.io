@@ -8,11 +8,15 @@ import { api } from "@/convex/_generated/api";
 import { FILE } from "../../dashboard/_components/FileList";
 import { Id } from "@/convex/_generated/dataModel"; // Adjust the path if necessary
 import Canvas from "../_components/Canvas";
+import { FileListContext } from "@/app/_context/FileListContext";
 
 function Workspace({ params }: { params: { fileId: string } }) {
   const [triggerSave, setTriggerSave] = useState(false);
   const convex = useConvex();
-  const [fileData, setFileData] = useState<FILE | any>(null);
+  const [fileData, setFileData] = useState<FILE | null>(null);
+
+  // Define file list state for context
+  const [fileList_, setFileList_] = useState<FILE[]>([]);
 
   const { fileId } = params;
 
@@ -28,30 +32,37 @@ function Workspace({ params }: { params: { fileId: string } }) {
       _id: fileId,
     });
     setFileData(result);
+    setFileList_((prevList) => [...prevList, result]); // Add result to file list if needed
   };
 
   return (
     <div className="flex flex-col h-screen">
-      <WorkspaceHeader onSave={() => setTriggerSave(!triggerSave)} />
+      {/* Provide file list and setter to context */}
+      <FileListContext.Provider value={{ fileList_, setFileList_ }}>
+        <WorkspaceHeader onSave={() => setTriggerSave(!triggerSave)} />
+      </FileListContext.Provider>
 
       {/* Responsive Workspace Layout */}
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-2">
         {/* Document */}
         <div className="flex flex-col h-full">
-          <Editor
-            onSaveTrigger={triggerSave}
-            fileId={fileId}
-            fileData={fileData}
-          />
+          {fileData && ( // Check if fileData is not null
+            <Editor
+              onSaveTrigger={triggerSave}
+              fileId={fileId}
+              fileData={fileData}
+            />
+          )}
         </div>
-
         {/* Whiteboard/Canvas */}
         <div className="flex flex-col h-full border-l border-gray-300">
-          <Canvas
-            onSaveTrigger={triggerSave}
-            fileId={fileId}
-            fileData={fileData}
-          />
+          {fileData && (
+            <Canvas
+              onSaveTrigger={triggerSave}
+              fileId={fileId}
+              fileData={fileData}
+            />
+          )}
         </div>
       </div>
     </div>
