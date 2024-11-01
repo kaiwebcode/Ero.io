@@ -90,7 +90,7 @@ function FileList() {
                       </DropdownMenuTrigger>
                       <DropdownMenuContent>
                         <DropdownMenuItem className="gap-3">
-                          <Archive className="h-4 w-4" /> Archive
+                          <Archive className="h-4 w-4" /> Delete
                         </DropdownMenuItem>
                       </DropdownMenuContent>
                     </DropdownMenu>

@@ -70,8 +70,7 @@ function SideNav() {
               }
               />
               </div>
-              <div>
-
+              <div className="mt-60">
             <SideNavBottomSection
               totalFiles={totalFiles}
               onFileCreate={onFileCreate}
@@ -82,15 +81,17 @@ function SideNav() {
       </div>
 
       {/* Desktop Sidebar - visible on medium and larger screens */}
-      <div className="hidden md:flex h-full w-64 fixed p-6 border-r border-gray-200 flex-col">
+      <div className="hidden md:flex h-full w-64 fixed p-6 border-r border-gray-200 flex-col ">
         <SideNavTopSection
           user={user}
           setActiveTeamInfo={(activeTeam: TEAM) => setActiveTeam(activeTeam)}
         />
+        <div className="mt-80">
         <SideNavBottomSection
           totalFiles={totalFiles}
           onFileCreate={onFileCreate}
-        />
+          />
+          </div>
       </div>
     </div>
   );
