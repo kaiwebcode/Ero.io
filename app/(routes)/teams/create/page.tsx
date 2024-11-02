@@ -7,7 +7,9 @@ import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { toast } from "sonner";
+
+import { toast } from "react-hot-toast";
+
 
 function CreateTeam() {
   const [teamName, setTeamName] = useState("");

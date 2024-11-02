@@ -30,7 +30,9 @@ h6.ce-header {
   @apply text-base font-semibold
 }
 
+
 @layer base {
+  
   :root {
     --radius: 0.5rem;
     --background: 0 0% 100%;

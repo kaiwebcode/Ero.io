@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Excalidraw, MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
+import { Excalidraw, Footer, MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FILE } from "../../dashboard/_components/FileList";
@@ -57,6 +57,16 @@ function Canvas({
               </WelcomeScreen.Center.Heading>
             </WelcomeScreen.Center>
           </WelcomeScreen>
+
+          <Footer>
+          <button
+            className="custom-footer"
+            onClick={() => alert("This is dummy footer")}
+          >
+            custom footer
+          </button>
+        </Footer>
+
         </Excalidraw>
       )}
     </div>

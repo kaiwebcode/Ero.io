@@ -55,7 +55,7 @@ function Workspace({ params }: { params: { fileId: string } }) {
           )}
         </div>
         {/* Whiteboard/Canvas */}
-        <div className="flex flex-col h-full border-l border-gray-300">
+        <div className="flex flex-col h-full border-l border-gray-300 ">
           {fileData && (
             <Canvas
               onSaveTrigger={triggerSave}

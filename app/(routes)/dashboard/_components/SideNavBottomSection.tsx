@@ -14,8 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Constant from "@/app/_constant/Constant";
 import PricingDialog from "./PricingDialog";
-// import Constant from '@/app/_constant/Constant'
-// import PricingDialog from './PricingDialog'
+
 function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
   const menuList = [
     {

@@ -9,8 +9,14 @@ import Paragraph from "@editorjs/paragraph";
 import Warning from "@editorjs/warning";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { toast } from "sonner";
+import { toast } from "react-hot-toast";
 import { FILE } from "../../dashboard/_components/FileList";
+import SimpleImage from "@editorjs/simple-image";
+import Quote from "@editorjs/quote";
+import Table from '@editorjs/table'
+import Underline from '@editorjs/underline';
+import NestedList from '@editorjs/nested-list';
+import { config } from "process";
 
 const rawDocument = {
   time: 1550476186479,
@@ -114,6 +120,40 @@ function Editor({
             messagePlaceholder: "Warning message",
           },
         },
+        image: {
+          class: SimpleImage,
+          inlineToolbar: true,
+        },
+        quote: {
+          class: Quote as any,
+          inlineToolbar: true,
+          shortcut: "CMD+SHIFT+O",
+          config: {
+            quotePlaceholder: "Enter a quote",
+            captionPlaceholder: "Quote's author",
+          },
+        },
+        table: {
+          class: Table as any,
+          inlineToolbar: true,
+          config: {
+            rows: 2,
+            cols: 3,
+            maxRows: 5,
+            maxCols: 5,
+          },
+        },
+        underline: {
+          class: Underline as any
+        },
+        nestedList: {
+          class: NestedList as any,
+          inlineToolbar: true,
+          config: {
+            defaultStyle: 'unordered',
+            defaultItem:""
+          },
+        },
       },
     });
   };
@@ -129,7 +169,7 @@ function Editor({
             document: JSON.stringify(outputData),
           }).then(
             (resp) => {
-              toast("Document Updated!");
+              toast("Document Save!");
             },
             (e) => {
               toast("Server Error!");
@@ -143,7 +183,7 @@ function Editor({
   };
 
   return (
-    <div className="px-4 sm:px-8 md:px-16 lg:px-20">
+    <div className=" sm:px-8 md:px-16 lg:px-20">
       <div ref={holderRef} id="editorjs" className="min-h-screen"></div>
     </div>
   );

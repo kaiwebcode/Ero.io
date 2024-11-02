@@ -5,7 +5,7 @@ import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import SideNavBottomSection from "./SideNavBottomSection";
 import { useConvex, useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { toast } from "sonner";
+import { toast } from "react-hot-toast";
 import { FileListContext } from "@/app/_context/FileListContext";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
