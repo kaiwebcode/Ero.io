@@ -183,8 +183,8 @@ function Editor({
   };
 
   return (
-    <div className=" sm:px-8 md:px-16 lg:px-20">
-      <div ref={holderRef} id="editorjs" className="min-h-screen"></div>
+    <div className="p-4 sm:px-8 md:px-16 lg:px-20">
+      <div ref={holderRef} id="editorjs" ></div>
     </div>
   );
 }

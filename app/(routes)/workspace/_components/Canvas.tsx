@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Excalidraw, Footer, MainMenu, WelcomeScreen } from "@excalidraw/excalidraw";
+import {
+  Excalidraw,
+  Footer,
+  MainMenu,
+  WelcomeScreen,
+} from "@excalidraw/excalidraw";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { FILE } from "../../dashboard/_components/FileList";
@@ -33,7 +38,7 @@ function Canvas({
   };
 
   return (
-    <div className="min-h-screen p-1 md:p-8">
+    <div className="min-h-screen p-3 md:w-full " style={{ height: "500px" }}>
       {fileData && (
         <Excalidraw
           // theme="dark"
@@ -49,24 +54,29 @@ function Canvas({
             },
           }}
         >
+        
+
           <WelcomeScreen>
+            <WelcomeScreen.Hints.ToolbarHint>
+              <p> ToolBar Hints </p>
+            </WelcomeScreen.Hints.ToolbarHint>
+            <WelcomeScreen.Hints.MenuHint />
+            <WelcomeScreen.Hints.HelpHint />
+
             <WelcomeScreen.Center>
-              <WelcomeScreen.Center.Logo />
+              <WelcomeScreen.Center.Logo>Ero.IO</WelcomeScreen.Center.Logo>
               <WelcomeScreen.Center.Heading>
-                Welcome Screen Heading!
+                Welcome Screen Ero.io
               </WelcomeScreen.Center.Heading>
-            </WelcomeScreen.Center>
+              <WelcomeScreen.Center.Menu>
+               
+                 <WelcomeScreen.Center.MenuItemHelp />
+              </WelcomeScreen.Center.Menu> 
+             </WelcomeScreen.Center>
           </WelcomeScreen>
 
-          <Footer>
-          <button
-            className="custom-footer"
-            onClick={() => alert("This is dummy footer")}
-          >
-            custom footer
-          </button>
-        </Footer>
-
+          <Footer />
+    
         </Excalidraw>
       )}
     </div>

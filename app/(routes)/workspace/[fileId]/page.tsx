@@ -43,7 +43,7 @@ function Workspace({ params }: { params: { fileId: string } }) {
       </FileListContext.Provider>
 
       {/* Responsive Workspace Layout */}
-      <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div className="min-h-screen flex-1 grid grid-cols-1 md:grid-cols-2 gap-2">
         {/* Document */}
         <div className="flex flex-col h-full">
           {fileData && ( // Check if fileData is not null
