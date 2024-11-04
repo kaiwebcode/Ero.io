@@ -34,7 +34,7 @@ function Hero() {
                   Creative Drawings
                 </span>
               </h1>
-              <p className="mt-8 text-lg lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap">
+              <p className="mt-8  text-base md:text-lg lg:text-xl lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap">
                 Collaborate and visualize with ease using our{" "}
                 <span className="font-semibold">intuitive drawing tools</span>.
                 Perfect for brainstorming, planning, and capturing ideas in
