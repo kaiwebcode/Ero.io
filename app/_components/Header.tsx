@@ -1,8 +1,15 @@
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 import React from "react";
+import { motion } from "framer-motion";
 
 function Header() {
   return (
+    <motion.nav
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.0, ease: "easeOut" }}
+      >
+
     <header className="bg-black">
       <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
@@ -33,6 +40,7 @@ function Header() {
         </div>
       </div>
     </header>
+            </motion.nav>
   );
 }
 
