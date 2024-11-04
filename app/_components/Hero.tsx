@@ -15,45 +15,56 @@ function Hero() {
   }, [isInView]);
 
   return (
-    <section ref={ref} className="flex justify-center md:h-screen lg:h-screen items-center mx-auto px-4 sm:px-8 md:px-12 lg:px-24 h-screen bg-cover bg-center" style={{ backgroundImage: "url('/background-image-png-4.png')" }}>
+    <section
+      ref={ref}
+      className="flex justify-center md:h-screen lg:h-screen items-center mx-auto px-4 sm:px-8 md:px-12 lg:px-24 h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('/background-image-png-4.png')" }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.0, ease: "circInOut" }}
       >
-        <div className=" lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pb-30 ">
+        <div className="lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pb-30 ">
           <div className="col-span-2 px-6 lg:px-10 ">
             <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start">
-              <h1 className="relative w-fit tracking-tight text-balance mt-44 md:mt-64 lg:mt-20 font-bold !leading-tight text-gray-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                Discover the Latest in{" "}
-                <span className="bg-slate-900 px-2 text-white rounded-sm">Stylish</span>{" "}
-                Shoes
+              <h1 className="relative w-fit tracking-tight text-balance mt-52 md:mt-80 lg:mt-20 font-bold !leading-tight text-gray-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+                Bring Your Ideas to Life with{" "}
+                <span className="bg-slate-900 px-2 text-white rounded-sm">
+                  Creative Drawings
+                </span>
               </h1>
               <p className="mt-8 text-lg lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap">
-                Step into a world of comfort and fashion with our{" "}
-                <span className="font-semibold">premium collection</span> of shoes. Whether you're heading to the gym or a night out, we have the perfect pair for you.
+                Collaborate and visualize with ease using our{" "}
+                <span className="font-semibold">intuitive drawing tools</span>.
+                Perfect for brainstorming, planning, and capturing ideas in
+                real-time.
               </p>
 
               <ul className="mt-8 space-y-2 text-left font-medium flex flex-col items-center sm:items-start ">
                 <div className="space-y-2">
                   <li className="flex gap-1.5 items-center text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />
-                    High-quality, durable materials
+                    Powerful and easy-to-use drawing tools
                   </li>
                   <li className="flex gap-1.5 items-center text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />
-                    Designed for comfort and style
+                    Real-time collaboration with your team
                   </li>
                   <li className="flex gap-1.5 items-center text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />
-                    Available in a variety of sizes and colors
+                    Save, share, and revisit your work anytime
                   </li>
                 </div>
               </ul>
 
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 <div className="flex -space-x-4">
-                  {/* Replace the user images with your own optimized URLs */}
+                  {
+                    [
+                      /* Replace with your own user images if available */
+                    ]
+                  }
                   {[
                     "https://github.com/joschan21/casecobra/raw/master/public/users/user-1.png",
                     "https://github.com/joschan21/casecobra/raw/master/public/users/user-2.png",
@@ -75,15 +86,17 @@ function Hero() {
                 <div className="flex flex-col justify-between items-center sm:items-start">
                   <div className="flex gap-0.5">
                     {[...Array(5)].map((_, index) => (
-                      <Star key={index} className="h-4 w-4 text-green-600 fill-green-600" />
+                      <Star
+                        key={index}
+                        className="h-4 w-4 text-green-600 fill-green-600"
+                      />
                     ))}
                   </div>
                   <p>
                     <span className="font-semibold">
-                      <CountUp end={1250} duration={5} />{" "}
-                      {/* Added CountUp here */}
+                      <CountUp end={1250} duration={5} />
                     </span>{" "}
-                    happy customers walking in style
+                    users building and sharing ideas
                   </p>
                 </div>
               </div>
@@ -93,7 +106,7 @@ function Hero() {
             <div className="group rounded-xl overflow-hidden sm:aspect-w-1 sm:aspect-h-1 md:aspect-w-2 md:aspect-h-1 lg:aspect-w-3 lg:aspect-h-1">
               <Image
                 src={HomePage}
-                alt="Shoes collection showcase"
+                alt="Creative drawing showcase"
                 className="object-cover object-center"
                 layout="responsive"
                 width={1920}
