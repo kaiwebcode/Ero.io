@@ -24,7 +24,7 @@ function Hero() {
         <div className=" lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pb-30 ">
           <div className="col-span-2 px-6 lg:px-10 ">
             <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start">
-              <h1 className="relative w-fit tracking-tight text-balance mt-36 font-bold !leading-tight text-gray-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="relative w-fit tracking-tight text-balance mt-44 md:mt-64 lg:mt-20 font-bold !leading-tight text-gray-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
                 Discover the Latest in{" "}
                 <span className="bg-slate-900 px-2 text-white rounded-sm">Stylish</span>{" "}
                 Shoes
@@ -89,7 +89,7 @@ function Hero() {
               </div>
             </div>
           </div>
-          <div className="mt-8 md:mt-20 lg:mt-40 grid gap-y-6 sm:gap-x-4 md:gap-x-6 lg:gap-x-8">
+          <div className="mt-8 md:mt-20 lg:mt-32 grid gap-y-6 sm:gap-x-4 md:gap-x-6 lg:gap-x-8">
             <div className="group rounded-xl overflow-hidden sm:aspect-w-1 sm:aspect-h-1 md:aspect-w-2 md:aspect-h-1 lg:aspect-w-3 lg:aspect-h-1">
               <Image
                 src={HomePage}
