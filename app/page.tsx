@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <div className="w-full sticky top-0 z-50">
-      <Header />
+        <Header />
       </div>
-      <div >
-      <Hero />
+      <div>
+        <Hero />
       </div>
     </div>
   );
