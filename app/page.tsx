@@ -13,8 +13,12 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
+      <div className="w-full sticky top-0 z-50">
       <Header />
+      </div>
+      <div >
       <Hero />
+      </div>
     </div>
   );
 }
