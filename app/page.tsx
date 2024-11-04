@@ -1,20 +1,19 @@
-"use client"
+"use client";
 import Header from "./_components/Header";
 import Hero from "./_components/Hero";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { useEffect } from "react";
 
 export default function Home() {
-
-  const {user} = useKindeBrowserClient();
+  const { user } = useKindeBrowserClient();
 
   useEffect(() => {
-    console.log("--",user)
-  }, [user])
+    console.log("--", user);
+  }, [user]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-black">
-      <Header/>
+    <div className="flex flex-col">
+      <Header />
       <Hero />
     </div>
   );
