@@ -54,7 +54,7 @@ function SideNav() {
   return (
     <div className=" flex flex-col border-r h-screen">
       {/* Mobile Sidebar - visible on small screens */}
-      <div className="md:hidden">
+      <div className="md:hidden overflow-y-scroll">
         <Sheet>
           <SheetTrigger asChild>
             <Button className="m-4" variant="outline" size="icon">
