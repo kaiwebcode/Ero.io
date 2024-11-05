@@ -13,17 +13,17 @@ import { toast } from "react-hot-toast";
 import { FILE } from "../../dashboard/_components/FileList";
 import SimpleImage from "@editorjs/simple-image";
 import Quote from "@editorjs/quote";
-import Table from '@editorjs/table'
-import Underline from '@editorjs/underline';
-import NestedList from '@editorjs/nested-list';
-import { config } from "process";
+import Table from "@editorjs/table";
+import Underline from "@editorjs/underline";
+import NestedList from "@editorjs/nested-list";
 
 const rawDocument = {
   time: 1550476186479,
   blocks: [
     {
       data: {
-        text: "Document Name",
+        text: "Add text, and draw anything and save the document file",
+        // text:"Add text, and draw anything and save the document file",
         level: 2,
       },
       id: "123",
@@ -144,14 +144,14 @@ function Editor({
           },
         },
         underline: {
-          class: Underline as any
+          class: Underline as any,
         },
         nestedList: {
           class: NestedList as any,
           inlineToolbar: true,
           config: {
-            defaultStyle: 'unordered',
-            defaultItem:""
+            defaultStyle: "unordered",
+            defaultItem: "",
           },
         },
       },
@@ -184,7 +184,7 @@ function Editor({
 
   return (
     <div className="p-4 sm:px-8 md:px-16 lg:px-20">
-      <div ref={holderRef} id="editorjs" ></div>
+      <div ref={holderRef} id="editorjs"></div>
     </div>
   );
 }

@@ -8,8 +8,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
@@ -24,11 +22,13 @@ export interface FILE {
   _id: string;
   _creationTime: number;
 }
+
 function FileList() {
   const { fileList_, setFileList_ } = useContext(FileListContext);
-  const [fileList, setFileList] = useState<any>();
+  const [fileList, setFileList] = useState<FILE[] | null>(null);
   const { user }: any = useKindeBrowserClient();
   const router = useRouter();
+
   useEffect(() => {
     fileList_ && setFileList(fileList_);
     console.log(fileList_);
@@ -36,28 +36,28 @@ function FileList() {
 
   return (
     <div className="mt-10">
-      <div className="overflow-x-auto">
-        <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
-          <thead className="ltr:text-left rtl:text-right">
-            <tr>
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                File Name
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Created At
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Edited
-              </td>
-              <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-                Author
-              </td>
-            </tr>
-          </thead>
+      {fileList && fileList.length > 0 ? (
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+            <thead className="ltr:text-left rtl:text-right">
+              <tr>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  File Name
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  Created At
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  Edited
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  Author
+                </td>
+              </tr>
+            </thead>
 
-          <tbody className="divide-y divide-gray-200">
-            {fileList &&
-              fileList.map((file: FILE, index: number) => (
+            <tbody className="divide-y divide-gray-200">
+              {fileList.map((file: FILE, index: number) => (
                 <tr
                   key={index}
                   className="odd:bg-gray-50 cursor-pointer"
@@ -67,7 +67,7 @@ function FileList() {
                     {file.fileName}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                    {moment(file._creationTime).format("DD MMM YYYY")}{" "}
+                    {moment(file._creationTime).format("DD MMM YYYY")}
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700">
                     {moment(file._creationTime).format("DD MMM YYYY")}
@@ -97,9 +97,39 @@ function FileList() {
                   </td>
                 </tr>
               ))}
-          </tbody>
-        </table>
-      </div>
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+            <thead className="ltr:text-left rtl:text-right">
+              <tr>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  File Name
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  Created At
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  Edited
+                </td>
+                <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  Author
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="px-4 py-2 text-gray-700">Create</td>
+                <td className="px-4 py-2 text-gray-700">a</td>
+                <td className="px-4 py-2 text-gray-700">New</td>
+                <td className="px-4 py-2 text-gray-700">File</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }

@@ -12,6 +12,7 @@ import { useConvex } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import logo from "@/public/ero.io (1).png";
 
 export interface TEAM {
   createdBy: String;
@@ -60,9 +61,10 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
   };
   return (
     <div>
-          <h1 className="font-bold pb-6 text-3xl p-2 flex justify-start">
+      {/* <h1 className="font-bold pb-6 text-3xl p-2 flex justify-start">
             Ero.io
-          </h1>
+          </h1> */}
+      <Image src={logo} width={80} height={60} alt="logo" className="animate-bounce py-3"/>
       <Popover>
         <PopoverTrigger>
           <div
@@ -72,9 +74,9 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
       "
           >
             <h2
-              className="flex gap-1
+              className="flex 
                     items-center
-      font-bold text-[17px]
+      font-bold text-[20px]
       "
             >
               {activeTeam?.teamName}
@@ -148,7 +150,7 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
       <Button
         variant="outline"
         className="w-full justify-start
-          gap-2 font-bold mt-8 bg-gray-100"
+          gap-2 font-bold mt-2 bg-gray-100"
       >
         <LayoutGrid className="h-5 w-5" />
         All Files

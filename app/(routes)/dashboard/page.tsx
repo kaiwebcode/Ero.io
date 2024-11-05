@@ -16,9 +16,9 @@ import Header from "./_components/Header";
 function Dashboard() {
   const convex = useConvex();
   const { user }: any = useKindeBrowserClient();
-  
+
   const createUser = useMutation(api.user.createUser);
-  
+
   useEffect(() => {
     if (user) {
       checkUser();
@@ -39,17 +39,11 @@ function Dashboard() {
   };
 
   return (
-    
     <div className="flex flex-col p-2">
       <div className="flex-grow mt-4 ">
-      <Header />
+        <Header />  
         <FileList />
-      {/* <AdBanner
-        data-ad-slot="4796371341"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-        /> */}
-        </div>
+      </div>
     </div>
   );
 }

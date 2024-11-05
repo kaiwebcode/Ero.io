@@ -39,11 +39,9 @@ function DashboardLayout({
         <div className="md:h-screen md:fixed z-10 ">
           <SideNav />
 
-        {/* Main content */}
+          {/* Main content */}
         </div>
-        <div className="flex-1 md:ml-64 overflow-auto">
-          {children}
-        </div>
+        <div className="flex-1 md:ml-64 overflow-auto">{children}</div>
       </FileListContext.Provider>
     </div>
   );
