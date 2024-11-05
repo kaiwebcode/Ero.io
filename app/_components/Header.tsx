@@ -12,14 +12,14 @@ function Header() {
       transition={{ duration: 1.0, ease: "easeOut" }}
     >
       <header className="bg-black">
-        <div className="mx-auto flex h-20 max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Logo */}
           {/* <h1 className="text-white text-2xl font-bold lg:text-3xl">ERO.IO</h1> */}
-          <Image src={logo} alt="logo" width={70} height={70} />
+          <Image src={logo} alt="logo" width={60} height={60} />
 
           {/* Desktop Navigation Links (Hidden on Mobile) */}
           <nav aria-label="Global" className="hidden md:block">
-            <ul className="flex items-center gap-4 text-base">
+            <ul className="flex items-center gap-4 text-">
               {["About", "Careers", "History", "Services", "Projects"].map(
                 (item) => (
                   <li key={item}>
