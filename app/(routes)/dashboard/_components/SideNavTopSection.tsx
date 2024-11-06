@@ -90,17 +90,17 @@ function SideNavTopSection({ user, setActiveTeamInfo }: any) {
             {teamList?.map((team, index) => (
               <h2
                 key={index}
-                className={`p-2 font-bold hover:bg-blue-500
+                className={`p-2 font-bold hover:bg-gray-500
                          hover:text-white
                          rounded-lg mb-1 cursor-pointer
-                         ${activeTeam?._id == team._id && "bg-blue-500 text-white"}`}
+                         ${activeTeam?._id == team._id && "bg-black text-white"}`}
                 onClick={() => setActiveTeam(team)}
               >
                 {team.teamName}
               </h2>
             ))}
           </div>
-          <Separator className="mt-2 bg-slate-300" />
+          <Separator className="mt-2 bg-slate-900" />
           {/* Option Section  */}
           <div>
             {menu.map((item, index) => (

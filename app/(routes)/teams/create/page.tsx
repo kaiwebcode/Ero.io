@@ -48,7 +48,7 @@ function CreateTeam() {
           />
         </div>
         <Button
-          className="bg-blue-600 mt-6 sm:mt-9 w-full sm:w-[50%] hover:bg-blue-800 p-2 rounded text-white"
+          className="bg-black mt-6 sm:mt-9 w-full sm:w-[50%] hover:bg-gray-800 p-2 rounded text-white"
           disabled={!(teamName && teamName?.length > 0)}
           onClick={() => createNewTeam()}
         >

@@ -30,7 +30,7 @@ function Header() {
           <div className="w-[30px] h-[30px] rounded-full bg-gray-300" />
         )}
       </div>
-      <Button className="gap-2 flex text-sm h-8 hover:bg-blue-700 bg-blue-600">
+      <Button className="gap-2 flex text-sm h-8 hover:bg-gray-700 bg-black">
         <Send className="h-4 w-4" /> Invite
       </Button>
     </div>
