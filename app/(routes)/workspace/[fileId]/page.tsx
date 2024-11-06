@@ -44,20 +44,21 @@ function Workspace({ params }: { params: { fileId: string } }) {
 
       {/* Responsive Workspace Layout */}
       <div className="min-h-screen flex-1 grid grid-cols-1 md:grid-cols-2 gap-2">
-        {/* Document */}
-        <div className="flex flex-col h-full">
-          {fileData && ( // Check if fileData is not null
-            <Editor
+        {/* Whiteboard/Canvas */}
+        <div className="flex flex-col h-full border-r border-gray-300 ">
+          {fileData && (
+            <Canvas
               onSaveTrigger={triggerSave}
               fileId={fileId}
               fileData={fileData}
             />
           )}
         </div>
-        {/* Whiteboard/Canvas */}
-        <div className="flex flex-col h-full border-l border-gray-300 ">
-          {fileData && (
-            <Canvas
+
+         {/* Document */}
+         <div className="flex flex-col h-full">
+          {fileData && ( // Check if fileData is not null
+            <Editor
               onSaveTrigger={triggerSave}
               fileId={fileId}
               fileData={fileData}

@@ -183,7 +183,7 @@ function Editor({
   };
 
   return (
-    <div className="p-4 sm:px-8 md:px-16 lg:px-20">
+    <div className="p-4 sm:px-8 md:px-16 lg:px-10">
       <div ref={holderRef} id="editorjs" className="z-100"></div>
     </div>
   );
