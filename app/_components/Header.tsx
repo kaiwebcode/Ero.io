@@ -2,52 +2,63 @@ import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "@/public/ero.io.png";
 
 function Header() {
   return (
-    <motion.nav
+    <motion.header
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.0, ease: "easeOut" }}
+      transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
+      className="bg-black bg-center bg-no-repeat"
     >
-      <header className="bg-black">
-        <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* Logo */}
-          {/* <h1 className="text-white text-2xl font-bold lg:text-3xl">ERO.IO</h1> */}
-          <Image src={logo} alt="logo" width={60} height={60} />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
+          {/* Logo with hover effect */}
+          <Link href="/" className="flex items-center">
+            <Image 
+              src={logo} 
+              alt="ERO.IO Logo" 
+              width={60} 
+              height={60} 
+              className="transition-transform duration-300 hover:scale-110"
+            />
+            <h1 className="ml-2 text-white text-xl font-bold tracking-tight hidden md:flex">ERO.IO</h1>
+          </Link>
 
-          {/* Desktop Navigation Links (Hidden on Mobile) */}
-          <nav aria-label="Global" className="hidden md:block">
-            <ul className="flex items-center gap-4 text-">
-              {["About", "Careers", "History", "Services", "Projects"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      className="text-white transition hover:text-gray-100"
-                      href="#"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
-            </ul>
+          {/* Navigation Links */}
+          <nav className="hidden md:flex space-x-10 md:space-x-5">
+            {["About", "Careers", "History", "Services", "Projects"].map((item) => (
+              <Link 
+                key={item} 
+                href={`#${item.toLowerCase()}`} 
+                className="text-white hover:text-gray-300 transition-colors duration-200"
+              >
+                {item}
+              </Link>
+            ))}
           </nav>
+            {/* mobile nav buttons */}
+          <div>
 
-          {/* Action Buttons (Visible on All Screens) */}
-          <div className="flex items-center gap-2">
-            <div className="block rounded-md bg-gray-800 px-3 py-2 text-sm font-medium text-white cursor-pointer hover:bg-gray-700 transition">
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-4">
+            <button className="bg-transparent border border-white hover:bg-white hover:text-black text-white font-medium py-2 px-4 rounded transition">
               <LoginLink postLoginRedirectURL="/dashboard">Login</LoginLink>
-            </div>
-
-            <div className="rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-800 transition cursor-pointer hover:text-gray-900">
+            </button>
+            <button className="bg-white hover:bg-gray-100 text-black font-medium py-2 px-4 rounded transition">
               <RegisterLink>Register</RegisterLink>
-            </div>
+            </button>
           </div>
         </div>
-      </header>
-    </motion.nav>
+      </div>
+
+      {/* Mobile Menu */}
+       
+    </motion.header>
   );
 }
 

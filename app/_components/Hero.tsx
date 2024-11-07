@@ -1,145 +1,135 @@
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
-import { Check, Star } from "lucide-react";
+import { motion, useInView, useAnimation } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
-import CountUp from "react-countup";
-import { motion, useInView } from "framer-motion";
+import { Star, ArrowRight } from "lucide-react";
 import HomePage from "@/public/homePage.png";
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 
 function Hero() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const controls = useAnimation();
+  const [isHovering, setIsHovering] = useState(false);
+  const [showStars, setShowStars] = useState(false);
 
   useEffect(() => {
-    // console.log(isInView);
-  }, [isInView]);
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [isInView, controls]);
 
   return (
     <section
       ref={ref}
-      className="flex justify-center md:h-screen lg:h-screen items-center mx-auto px-4 sm:px-8 md:px-12 lg:px-24 h-screen bg-cover bg-center"
+      className="relative flex items-center mx-auto px-4 sm:px-8 md:px-12 lg:px-24 justify-center min-h-screen bg-cover bg-center overflow-hidden"
       style={{ backgroundImage: "url('/background-image-png-4.png')" }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.0, ease: "circInOut" }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={controls}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hover: { scale: 1.05 },
+        }}
+        transition={{ duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        onMouseEnter={() => {
+          setIsHovering(true);
+          setShowStars(true);
+        }}
+        onMouseLeave={() => {
+          setIsHovering(false);
+          setTimeout(() => setShowStars(false), 500); // Delay to keep stars visible for a moment
+        }}
       >
-        <div className="lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pb-30 ">
-          <div className="col-span-2 px-6 lg:px-10 ">
-            <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start">
-              <h1 className="relative w-fit tracking-tight text-balance mt-52 md:mt-80 lg:mt-20 font-bold !leading-tight text-gray-900 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                Bring Your Ideas to Life with{" "}
-                <span className="bg-slate-900 px-2 text-white rounded-sm">
-                  Creative Drawings
-                </span>
-              </h1>
-              <p className="mt-8  text-base md:text-lg lg:text-xl lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap">
-                Collaborate and visualize with ease using our{" "}
-                <span className="font-semibold">intuitive drawing tools</span>.
-                Perfect for brainstorming, planning, and capturing ideas in
-                real-time.
-              </p>
-
-              <ul className="mt-8 space-y-2 text-left font-medium flex flex-col items-center sm:items-start ">
-                <div className="space-y-2">
-                  <li className="flex gap-1.5 items-center text-left">
-                    <Check className="h-5 w-5 shrink-0 text-green-600" />
-                    Powerful and easy-to-use drawing tools
-                  </li>
-                  <li className="flex gap-1.5 items-center text-left">
-                    <Check className="h-5 w-5 shrink-0 text-green-600" />
-                    Real-time collaboration with your team
-                  </li>
-                  <li className="flex gap-1.5 items-center text-left">
-                    <Check className="h-5 w-5 shrink-0 text-green-600" />
-                    Save, share, and revisit your work anytime
-                  </li>
-                </div>
-              </ul>
-
-              <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
-                <div className="flex -space-x-4">
-                  {
-                    [
-                      /* Replace with your own user images if available */
-                    ]
-                  }
-                  {[
-                    "https://github.com/joschan21/casecobra/raw/master/public/users/user-1.png",
-                    "https://github.com/joschan21/casecobra/raw/master/public/users/user-2.png",
-                    "https://github.com/joschan21/casecobra/raw/master/public/users/user-3.png",
-                    "https://github.com/joschan21/casecobra/raw/master/public/users/user-4.jpg",
-                    "https://github.com/joschan21/casecobra/raw/master/public/users/user-5.jpg",
-                  ].map((src, index) => (
-                    <Image
-                      key={index}
-                      src={src}
-                      alt={`user image-${index + 1}`}
-                      width={40}
-                      height={40}
-                      className="inline-block h-10 w-10 rounded-full ring-2 ring-slate-100"
-                    />
-                  ))}
-                </div>
-
-                <div className="flex flex-col justify-between items-center sm:items-start">
-                  <div className="flex gap-0.5">
-                    {[...Array(5)].map((_, index) => (
-                      <Star
-                        key={index}
-                        className="h-4 w-4 text-green-600 fill-green-600"
-                      />
-                    ))}
-                  </div>
-                  <p>
-                    <span className="font-semibold">
-                      <CountUp end={1250} duration={5} />
-                    </span>{" "}
-                    users building and sharing ideas
-                  </p>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white   mb-4">
+              <span className="relative">Ignite Your Imagination</span>
+            </h1>
+            <p className="text-lg lg:text-xl text-gray-600 mb-8">
+              <span className="font-semibold text-white">Dive into</span> a
+              universe where your ideas{" "}
+              <span className="text-transparent text-white">transcend</span>{" "}
+              reality.
+            </p>
+            <ul className="list-disc list-inside text-black space-y-2">
+              <li>Revolutionary tools for the modern artist</li>
+              <li>Collaborate in real-time, across the globe</li>
+              <li>Your canvas, your rules, anytime, anywhere</li>
+            </ul>
+            <div className="mt-6 flex items-center justify-center lg:justify-start">
+              <button className="px-6 py-3 bg-transparent border-2 border-black text-black  font-semibold rounded-full hover:bg-white transition-colors duration-300 relative overflow-hidden">
+                <RegisterLink>
+                  <span className="relative z-10">Start Creating</span>
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={{ width: isHovering ? "100%" : 0 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className="absolute inset-0 bg-white opacity-10"
+                  />
+                </RegisterLink>
+              </button>
             </div>
           </div>
-          <div className="mt-8 md:mt-20 lg:mt-32 grid gap-y-6 sm:gap-x-4 md:gap-x-6 lg:gap-x-8">
-            <div className="group rounded-xl overflow-hidden sm:aspect-w-1 sm:aspect-h-1 md:aspect-w-2 md:aspect-h-1 lg:aspect-w-3 lg:aspect-h-1">
-              <Image
-                src={HomePage}
-                alt="Creative drawing showcase"
-                className="object-cover object-center"
-                layout="responsive"
-                width={1920}
-                height={1080}
-                sizes="(max-width: 640px) 100vw,
-                      (max-width: 768px) 90vw,
-                      (max-width: 1024px) 80vw,
-                      (max-width: 1280px) 60vw,
-                      50vw"
-                priority
-              />
-            </div>
+          <div className="relative">
+            <Image
+              src={HomePage}
+              alt="Creative drawing showcase"
+              className="rounded-xl shadow-lg transform transition-transform duration-500 hover:scale-105"
+              layout="responsive"
+              width={1920}
+              height={1080}
+            />
+            {showStars && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                {[...Array(5)].map((_, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    className="absolute"
+                    style={{
+                      transform: `translate(${Math.random() * 100 - 50}%, ${Math.random() * 100 - 50}%)`,
+                    }}
+                  >
+                    <Star className="h-10 w-10 text-yellow-400 animate-pulse" />
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
           </div>
         </div>
       </motion.div>
       <motion.div
-        variants={{
-          hidden: { left: 0 },
-          visible: { left: "100%" },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 0.5, ease: "easeIn" }}
-        style={{
-          position: "absolute",
-          top: 4,
-          bottom: 4,
-          left: 0,
-          right: 0,
-          background: "var(--brand)",
-          zIndex: 20,
-        }}
+        className="absolute inset-0 bg-gradient-to-t  from-transparent to-black  opacity-40 "
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
       />
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        variants={{
+          visible: { scale: 1.05 },
+          hover: { scale: 1.1 },
+        }}
+        animate={isHovering ? "hover" : "visible"}
+        transition={{ duration: 2, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 p-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+      >
+        <ArrowRight className="h-8 w-8 text-white animate-bounce" />
+      </motion.div>
     </section>
   );
 }
