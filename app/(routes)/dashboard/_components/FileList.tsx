@@ -59,7 +59,7 @@ function FileList() {
                 <th className="px-6 py-3 text-left">Created At</th>
                 <th className="px-6 py-3 text-left">Last Edited</th>
                 <th className="px-6 py-3 text-left">Author</th>
-                <th className="px-6 py-3 text-left">Actions</th>
+                <th className="px-4 py-3 text-left">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -92,11 +92,11 @@ function FileList() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <td className="px-9 py-4 whitespace-nowrap text-sm font-medium text-left">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <button className="text-gray-400 hover:text-gray-500 transition-colors duration-200">
-                          <MoreHorizontal className="h-5 w-5" />
+                          <MoreHorizontal className="h-5 w-5 " />
                         </button>
                       </DropdownMenuTrigger>
                       <DropdownMenuContent>
