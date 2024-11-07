@@ -61,7 +61,7 @@ function Hero() {
             <div className="mt-6 flex items-center justify-center lg:justify-start">
               <button className="px-6 py-3 bg-transparent border-2 border-black text-black  font-semibold rounded-full hover:bg-white transition-colors duration-300 relative overflow-hidden">
                 <RegisterLink>
-                  <span className="relative z-10">Start Creating</span>
+                  <span className="relative z-10">Get Started</span>
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: isHovering ? "100%" : 0 }}
@@ -122,14 +122,7 @@ function Hero() {
         animate={isHovering ? "hover" : "visible"}
         transition={{ duration: 2, ease: "easeInOut" }}
       />
-      <motion.div
-        className="absolute bottom-0 right-0 p-4"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 2, duration: 1 }}
-      >
-        <ArrowRight className="h-8 w-8 text-white animate-bounce" />
-      </motion.div>
+      
     </section>
   );
 }

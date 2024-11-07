@@ -12,6 +12,7 @@ import React, { useEffect } from "react";
 import FileList from "./_components/FileList";
 import AdBanner from "@/app/_components/AdBanner";
 import Header from "./_components/Header";
+import { Footer } from "@/app/_components/Footer";
 
 function Dashboard() {
   const convex = useConvex();
@@ -42,7 +43,10 @@ function Dashboard() {
     <div className="flex flex-col p-2">
       <div className="flex-grow mt-4 ">
         <Header />  
+        {/* <div className="mb-[450px]"> */}
         <FileList />
+        {/* </div> */}
+        {/* <Footer /> */}
       </div>
     </div>
   );
