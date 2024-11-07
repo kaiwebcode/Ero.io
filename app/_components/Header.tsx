@@ -33,7 +33,7 @@ function Header() {
               <Link 
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
-                className="text-white hover:text-gray-300 transition-colors duration-200"
+                className="text-white hover:text-gray-300 transition-colors duration-200 hover:animate-bounce "
               >
                 {item}
               </Link>
