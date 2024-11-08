@@ -36,9 +36,24 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
       path: "",
     },
   ];
+  
   const [fileInput, setFileInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+
+
+  const handleCreateClick = async () => {
+    setLoading(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 5000)); // Simulated delay
+      await onFileCreate(fileInput);
+    } finally {
+      setLoading(false);
+      setShowDialog(false); // Close dialog after loading is complete
+    }
+  };
   return (
-    <div >
+    <div>
       {menuList.map((menu, index) => (
         <h2
           key={index}
@@ -50,12 +65,11 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
         </h2>
       ))}
 
-      {/* Add New File Button  */}
+      {/* Add New File Button */}
       <Dialog>
         <DialogTrigger className="w-full" asChild>
           <Button
-            className="w-full bg-black
-      hover:bg-gray-700 justify-start mt-3"
+            className="w-full bg-black hover:bg-gray-700 justify-start mt-3"
           >
             New File
           </Button>
@@ -79,10 +93,10 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
                 <Button
                   type="button"
                   className="bg-black hover:bg-gray-700 px-4 py-2 rounded text-white"
-                  disabled={!(fileInput && fileInput.length > 3)}
-                  onClick={() => onFileCreate(fileInput)}
+                  disabled={!(fileInput && fileInput.length > 3) || loading}
+                  onClick={handleCreateClick}
                 >
-                  Create
+                  {loading ? "Loading..." : "Create"}
                 </Button>
               </DialogClose>
             </DialogFooter>
@@ -92,10 +106,10 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
         )}
       </Dialog>
 
-      {/* Progress Bar  */}
+      {/* Progress Bar */}
       <div className="h-4 w-full bg-gray-200 rounded-full mt-5">
         <div
-          className={`h-4  bg-black rounded-full`}
+          className={`h-4 bg-black rounded-full`}
           style={{ width: `${(totalFiles / 10) * 100}%` }}
         ></div>
       </div>
