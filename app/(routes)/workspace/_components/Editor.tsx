@@ -92,7 +92,7 @@ function Editor({
       tools: {
         header: {
           class: Header as any,
-          shortcut: "SHIFT+H",
+          shortcut: "Ctrl+H",
           config: {
             placeholder: "Enter a Header",
           },
@@ -107,14 +107,17 @@ function Editor({
         checklist: {
           class: Checklist as any,
           inlineToolbar: true,
+          shortcut:"Ctrl+c",
         },
         paragraph: {
           class: Paragraph as any,
           inlineToolbar: true,
+          shortcut:"Ctrl+p",
         },
         warning: {
           class: Warning as any,
           inlineToolbar: true,
+          // shortcut:"Ctrl+w",
           config: {
             titlePlaceholder: "Warning title",
             messagePlaceholder: "Warning message",
@@ -123,11 +126,12 @@ function Editor({
         image: {
           class: SimpleImage,
           inlineToolbar: true,
+          shortcut:"Ctrl+i",
         },
         quote: {
           class: Quote as any,
           inlineToolbar: true,
-          shortcut: "CMD+SHIFT+O",
+          shortcut: "Ctrl+q",
           config: {
             quotePlaceholder: "Enter a quote",
             captionPlaceholder: "Quote's author",
@@ -135,6 +139,7 @@ function Editor({
         },
         table: {
           class: Table as any,
+          shortcut:"Shift+t",
           inlineToolbar: true,
           config: {
             rows: 2,
