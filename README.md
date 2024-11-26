@@ -32,7 +32,7 @@ Follow these steps to set up Ero.io locally.
 ### Prerequisites
 
 - Node.js (v16 or higher)
-- npm or yarn package manager
+- npm  package manager
 - Convex CLI installed ([Convex Quickstart Guide](https://docs.convex.dev/getting-started))
 
 ### Steps
