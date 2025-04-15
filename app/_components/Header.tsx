@@ -24,7 +24,7 @@ function Header() {
               height={60} 
               className="transition-transform duration-300 hover:scale-110"
             />
-            <h1 className="ml-2 text-white text-xl font-bold tracking-tight hidden md:flex">ERO.IO</h1>
+            <h1 className="ml-2 text-white text-xl font-bold tracking-tight hidden md:flex">ERO</h1>
           </Link>
 
           {/* Navigation Links */}
