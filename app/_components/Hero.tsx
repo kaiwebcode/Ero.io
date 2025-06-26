@@ -45,7 +45,7 @@ function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white   mb-4">
-              <span className="relative">Ignite Your Imagination</span>
+              <span className="relative">Ignite Your test</span>
             </h1>
             <p className="text-lg lg:text-xl text-gray-600 mb-8">
               <span className="font-semibold text-white">Dive into</span> a
