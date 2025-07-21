@@ -1,9 +1,12 @@
+"use client";
+
 import { motion, useInView, useAnimation } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Star, ArrowRight } from "lucide-react";
+import { Star } from "lucide-react";
 import HomePage from "@/public/homePage.png";
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@clerk/nextjs";
 
 function Hero() {
   const ref = useRef(null);
@@ -12,11 +15,20 @@ function Hero() {
   const [isHovering, setIsHovering] = useState(false);
   const [showStars, setShowStars] = useState(false);
 
+  const router = useRouter();
+  const { isSignedIn } = useAuth();
+
   useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
+    if (isInView) controls.start("visible");
   }, [isInView, controls]);
+
+  const handleGetStarted = () => {
+    if (isSignedIn) {
+      router.push("/dashboard");
+    } else {
+      router.push("/sign-in?redirect_url=/dashboard");
+    }
+  };
 
   return (
     <section
@@ -39,13 +51,13 @@ function Hero() {
         }}
         onMouseLeave={() => {
           setIsHovering(false);
-          setTimeout(() => setShowStars(false), 500); // Delay to keep stars visible for a moment
+          setTimeout(() => setShowStars(false), 500);
         }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white   mb-4">
-              <span className="relative">Ignite Your test</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4">
+              <span className="relative">Ignite Your Test</span>
             </h1>
             <p className="text-lg lg:text-xl text-gray-600 mb-8">
               <span className="font-semibold text-white">Dive into</span> a
@@ -58,20 +70,25 @@ function Hero() {
               <li>Collaborate in real-time, across the globe</li>
               <li>Your canvas, your rules, anytime, anywhere</li>
             </ul>
+
+            {/* ✅ Get Started Button with Auth Check */}
             <div className="mt-6 flex items-center justify-center lg:justify-start">
-              <button className="px-6 py-3 bg-transparent border-2 border-black text-black  font-semibold rounded-full hover:bg-white transition-colors duration-300 relative overflow-hidden">
-                <RegisterLink>
-                  <span className="relative z-10">Get Started</span>
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: isHovering ? "100%" : 0 }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-white opacity-10"
-                  />
-                </RegisterLink>
+              <button
+                onClick={handleGetStarted}
+                className="px-6 py-3 bg-transparent border-2 border-black text-black font-semibold rounded-full hover:bg-white transition-colors duration-300 relative overflow-hidden"
+              >
+                <span className="relative z-10">Get Started</span>
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: isHovering ? "100%" : 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-white opacity-10"
+                />
               </button>
             </div>
           </div>
+
+          {/* Right Image with Stars */}
           <div className="relative">
             <Image
               src={HomePage}
@@ -96,7 +113,9 @@ function Hero() {
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                     className="absolute"
                     style={{
-                      transform: `translate(${Math.random() * 100 - 50}%, ${Math.random() * 100 - 50}%)`,
+                      transform: `translate(${Math.random() * 100 - 50}%, ${
+                        Math.random() * 100 - 50
+                      }%)`,
                     }}
                   >
                     <Star className="h-10 w-10 text-yellow-400 animate-pulse" />
@@ -107,8 +126,10 @@ function Hero() {
           </div>
         </div>
       </motion.div>
+
+      {/* Background effects */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-t  from-transparent to-black  opacity-40 "
+        className="absolute inset-0 bg-gradient-to-t from-transparent to-black opacity-40"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
@@ -122,7 +143,6 @@ function Hero() {
         animate={isHovering ? "hover" : "visible"}
         transition={{ duration: 2, ease: "easeInOut" }}
       />
-      
     </section>
   );
 }

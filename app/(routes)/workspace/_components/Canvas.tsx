@@ -7,52 +7,52 @@ import {
 } from "@excalidraw/excalidraw";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { FILE } from "../../dashboard/_components/FileList";
+// import { FILE } from "../../dashboard/_components/FileList";
 
 function Canvas({
   onSaveTrigger,
   fileId,
-  fileData,
+  // fileData,
 }: {
   onSaveTrigger: any;
   fileId: any;
-  fileData: FILE;
+  // fileData: FILE;
 }) {
-  const [whiteBoardData, setWhiteBoardData] = useState<any>(
-    fileData?.whiteboard ? JSON.parse(fileData.whiteboard) : []
-  );
+  // const [whiteBoardData, setWhiteBoardData] = useState<any>(
+  //   fileData?.whiteboard ? JSON.parse(fileData.whiteboard) : []
+  // );
 
-  const updateWhiteboard = useMutation(api.files.updateWhiteboard);
+  // const updateWhiteboard = useMutation(api.files.updateWhiteboard);
 
-  useEffect(() => {
-    if (onSaveTrigger) {
-      saveWhiteboard();
-    }
-  }, [onSaveTrigger]);
+  // useEffect(() => {
+  //   if (onSaveTrigger) {
+  //     saveWhiteboard();
+  //   }
+  // }, [onSaveTrigger]);
 
-  const saveWhiteboard = () => {
-    updateWhiteboard({
-      _id: fileId,
-      whiteboard: JSON.stringify(whiteBoardData), // Convert to string here
-    }).then((resp) => console.log("Whiteboard data saved:", resp));
-  };
+  // const saveWhiteboard = () => {
+  //   updateWhiteboard({
+  //     _id: fileId,
+  //     whiteboard: JSON.stringify(whiteBoardData), // Convert to string here
+  //   }).then((resp) => console.log("Whiteboard data saved:", resp));
+  // };
 
   return (
     <div className="min-h-screen p-3 md:w-full " style={{ height: "500px" }}>
-      {fileData && (
+      {/* {fileData && ( */}
         <Excalidraw
           // theme="dark"
-          onChange={(excalidrawElements) =>
-            setWhiteBoardData(excalidrawElements)
-          }
-          initialData={{
-            elements: fileData?.whiteboard && JSON.parse(fileData?.whiteboard),
-          }}
-          UIOptions={{
-            canvasActions: {
-              saveToActiveFile: false,
-            },
-          }}
+          // onChange={(excalidrawElements) =>
+          //   setWhiteBoardData(excalidrawElements)
+          // }
+          // initialData={{
+          //   elements: fileData?.whiteboard && JSON.parse(fileData?.whiteboard),
+          // }}
+          // UIOptions={{
+          //   canvasActions: {
+          //     saveToActiveFile: false,
+          //   },
+          // }}
         >
         
 
@@ -78,7 +78,7 @@ function Canvas({
           <Footer />
     
         </Excalidraw>
-      )}
+      {/* )} */}
     </div>
   );
 }

@@ -14,27 +14,27 @@ function DashboardLayout({
   children: React.ReactNode;
 }>) {
   const convex = useConvex();
-  const { user }: any = useKindeBrowserClient();
-  const [fileList_, setFileList_] = useState();
+  // const { user }: any = useKindeBrowserClient();
+  // const [fileList_, setFileList_] = useState();
   const router = useRouter();
 
-  useEffect(() => {
-    user && checkTeam();
-  }, [user]);
+  // useEffect(() => {
+  //   user && checkTeam();
+  // }, [user]);
 
-  const checkTeam = async () => {
-    const result = await convex.query(api.teams.getTeam, {
-      email: user?.email,
-    });
+  // const checkTeam = async () => {
+  //   const result = await convex.query(api.teams.getTeam, {
+  //     email: user?.email,
+  //   });
 
-    if (!result?.length) {
-      router.push("teams/create");
-    }
-  };
+  //   if (!result?.length) {
+  //     router.push("teams/create");
+  //   }
+  // };
 
   return (
     <div className="flex min-h-screen ">
-      <FileListContext.Provider value={{ fileList_, setFileList_ }}>
+      {/* <FileListContext.Provider value={{ fileList_, setFileList_ }}> */}
         {/* Sidebar */}
         <div className="md:h-screen md:fixed z-10 ">
           <SideNav />
@@ -42,7 +42,7 @@ function DashboardLayout({
           {/* Main content */}
         </div>
         <div className="flex-1 md:ml-64 overflow-auto">{children}</div>
-      </FileListContext.Provider>
+      {/* </FileListContext.Provider> */}
     </div>
   );
 }

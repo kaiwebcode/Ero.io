@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Archive, Flag, Github } from "lucide-react";
+import { Archive, Flag, Github, LogOut } from "lucide-react";
 import React, { useState } from "react";
 import {
   Dialog,
@@ -14,6 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Constant from "@/app/_constant/Constant";
 import PricingDialog from "./PricingDialog";
+import { SignOutButton } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 
 function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
   const menuList = [
@@ -36,11 +38,11 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
       path: "",
     },
   ];
-  
+
   const [fileInput, setFileInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
-
+  const router = useRouter();
 
   const handleCreateClick = async () => {
     setLoading(true);
@@ -53,8 +55,8 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
     }
   };
   return (
-    <div>
-      {menuList.map((menu, index) => (
+    <div className="mt-10">
+      {/* {menuList.map((menu, index) => (
         <h2
           key={index}
           className="flex gap-2 p-1 px-2 text-[14px] 
@@ -63,10 +65,10 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
           <menu.icon className="h-5 w-5" />
           {menu.name}
         </h2>
-      ))}
+      ))} */}
 
       {/* Add New File Button */}
-      <Dialog>
+      {/* <Dialog>
         <DialogTrigger className="w-full" asChild>
           <Button
             className="w-full bg-black hover:bg-gray-700 justify-start mt-3"
@@ -104,8 +106,17 @@ function SideNavBottomSection({ onFileCreate, totalFiles }: any) {
         ) : (
           <PricingDialog />
         )}
-      </Dialog>
+      </Dialog> */}
 
+      <SignOutButton>
+        <Button
+          onClick={() => router.push("/")}
+          className="flex gap-2 items-center p-2 rounded-lg cursor-pointer text-sm w-full text-left"
+        >
+          <LogOut className="h-4 w-4" />
+          Logout
+        </Button>
+      </SignOutButton>
       {/* Progress Bar */}
       <div className="h-4 w-full bg-gray-200 rounded-full mt-5">
         <div

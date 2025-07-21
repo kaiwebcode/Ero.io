@@ -11,45 +11,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 function SideNav() {
-  const { user }: any = useKindeBrowserClient();
-  const createFile = useMutation(api.files.createFile);
+  // const { user }: any = useKindeBrowserClient();
+  // const createFile = useMutation(api.files.createFile);
   const [activeTeam, setActiveTeam] = useState<TEAM | any>();
   const convex = useConvex();
-  const [totalFiles, setTotalFiles] = useState<Number>();
-  const { fileList_, setFileList_ } = useContext(FileListContext);
-
-  useEffect(() => {
-    activeTeam && getFiles();
-  }, [activeTeam]);
-
-  const onFileCreate = (fileName: string) => {
-    createFile({
-      fileName: fileName,
-      teamId: activeTeam?._id,
-      createdBy: user?.email,
-      archive: false,
-      document: "",
-      whiteboard: "",
-    }).then(
-      (resp) => {
-        if (resp) {
-          getFiles();
-          toast("File created successfully!");
-        }
-      },
-      (e) => {
-        toast("Error while creating file");
-      }
-    );
-  };
-
-  const getFiles = async () => {
-    const result = await convex.query(api.files.getFiles, {
-      teamId: activeTeam?._id,
-    });
-    setFileList_(result);
-    setTotalFiles(result?.length);
-  };
+  // const [totalFiles, setTotalFiles] = useState<Number>();
+  // const { fileList_, setFileList_ } = useContext(FileListContext);
+ 
 
   return (
     <div className=" flex flex-col border-r h-screen">
@@ -64,7 +32,7 @@ function SideNav() {
           <SheetContent side="left" className="w-64 p-4">
             <div className="flex-1">
             <SideNavTopSection
-              user={user}
+              // user={user}
               setActiveTeamInfo={(activeTeam: TEAM) =>
                 setActiveTeam(activeTeam)
               }
@@ -72,8 +40,8 @@ function SideNav() {
               </div>
               <div className="mt-60">
             <SideNavBottomSection
-              totalFiles={totalFiles}
-              onFileCreate={onFileCreate}
+              // totalFiles={totalFiles}
+              // onFileCreate={onFileCreate}
               />
               </div>
           </SheetContent>
@@ -83,13 +51,13 @@ function SideNav() {
       {/* Desktop Sidebar - visible on medium and larger screens */}
       <div className="hidden md:flex h-full w-64 fixed p-6 border-r border-gray-200 flex-col ">
         <SideNavTopSection
-          user={user}
+          // user={user}
           setActiveTeamInfo={(activeTeam: TEAM) => setActiveTeam(activeTeam)}
         />
         <div className="mt-80">
         <SideNavBottomSection
-          totalFiles={totalFiles}
-          onFileCreate={onFileCreate}
+          // totalFiles={totalFiles}
+          // onFileCreate={onFileCreate}
           />
           </div>
       </div>

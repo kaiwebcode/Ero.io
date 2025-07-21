@@ -1,55 +1,20 @@
-"use client";
+// app/(routes)/dashboard/page.tsx
 
-import { Button } from "@/components/ui/button";
-import { api } from "@/convex/_generated/api";
-import {
-  LogoutLink,
-  useKindeBrowserClient,
-} from "@kinde-oss/kinde-auth-nextjs";
-import { useConvex, useMutation, useQuery } from "convex/react";
-import React, { useEffect } from "react";
+export const dynamic = "force-dynamic"; 
 
-import FileList from "./_components/FileList";
-import AdBanner from "@/app/_components/AdBanner";
+import { Suspense } from "react";
 import Header from "./_components/Header";
-import { Footer } from "@/app/_components/Footer";
+import { DashboardClient } from "./_components/DashboardClient";
 
-function Dashboard() {
-  const convex = useConvex();
-  const { user }: any = useKindeBrowserClient();
-
-  const createUser = useMutation(api.user.createUser);
-
-  useEffect(() => {
-    if (user) {
-      checkUser();
-    }
-  }, [user]);
-
-  const checkUser = async () => {
-    const result = await convex.query(api.user.getUser, { email: user?.email });
-    if (!result?.length) {
-      createUser({
-        name: user.given_name,
-        email: user.email,
-        image: user.picture,
-      }).then((resp) => {
-        console.log(resp);
-      });
-    }
-  };
-
+export default function DashboardPage() {
   return (
     <div className="flex flex-col p-2">
-      <div className="flex-grow mt-4 ">
-        <Header />  
-        {/* <div className="mb-[450px]"> */}
-        <FileList />
-        {/* </div> */}
-        {/* <Footer /> */}
+      <div className="flex-grow mt-4">
+        <Header />
+        <Suspense fallback={<div>Loading dashboard...</div>}>
+          <DashboardClient />
+        </Suspense>
       </div>
     </div>
   );
 }
-
-export default Dashboard;

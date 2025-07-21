@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    domains: ['lh3.googleusercontent.com', 'github.com'], // Allow images from this domain
+    domains: [ "img.clerk.com",'gravatar.com','lh3.googleusercontent.com', 'github.com'], // Allow images from this domain
   },
   /* config options here */
 };

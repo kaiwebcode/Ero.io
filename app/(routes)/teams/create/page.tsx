@@ -13,21 +13,21 @@ import { toast } from "react-hot-toast";
 
 function CreateTeam() {
   const [teamName, setTeamName] = useState("");
-  const createTeam = useMutation(api.teams.createTeam);
+  // const createTeam = useMutation(api.teams.createTeam);
   const { user }: any = useKindeBrowserClient();
   const router = useRouter();
   
-  const createNewTeam = () => {
-    createTeam({
-      teamName: teamName,
-      createdBy: user?.email,
-    }).then((resp) => {
-      if (resp) {
-        router.push("/dashboard");
-        toast("Team created successfully!!!");
-      }
-    });
-  };
+  // const createNewTeam = () => {
+  //   createTeam({
+  //     teamName: teamName,
+  //     createdBy: user?.email,
+  //   }).then((resp) => {
+  //     if (resp) {
+  //       router.push("/dashboard");
+  //       toast("Team created successfully!!!");
+  //     }
+  //   });
+  // };
 
   return (
     <div className="p-6 sm:p-10 max-w-lg mx-auto">
@@ -50,7 +50,7 @@ function CreateTeam() {
         <Button
           className="bg-black mt-6 sm:mt-9 w-full sm:w-[50%] hover:bg-gray-800 p-2 rounded text-white"
           disabled={!(teamName && teamName?.length > 0)}
-          onClick={() => createNewTeam()}
+          // onClick={() => createNewTeam()}
         >
           Create Team
         </Button>

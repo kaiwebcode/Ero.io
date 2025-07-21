@@ -1,38 +1,56 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
-import { Search, Send } from "lucide-react";
-import Image from "next/image";
+import { Plus, Search, Send } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  OrganizationProfile,
+  useOrganization,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 import React from "react";
+import { SearchInput } from "./search-inputs";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 function Header() {
-  const { user }: any = useKindeBrowserClient();
+  const {organization} = useOrganization();
+  const { isLoaded } = useUser(); // loading state from Clerk
 
   return (
     <div className="flex justify-end w-full gap-2 items-center">
-      <div className=" gap-2 items-center border rounded-md p-1 lg:flex md:flex hidden">
-        <Search className="h-4 w-4 " />
-        <input
-          type="text"
-          placeholder="Search"
-          className="outline-none flex-grow bg-transparent rounded-md"
-        />
-      </div>
-      <div>
-        {user?.picture ? (
-          <Image
-            src={user.picture}
-            alt="user"
-            width={30}
-            height={30}
-            className="rounded-full"
-          />
-        ) : (
-          <div className="w-[30px] h-[30px] rounded-full bg-gray-300" />
-        )}
-      </div>
-      <Button className="gap-2 flex text-sm h-8 hover:bg-gray-700 bg-black">
-        <Send className="h-4 w-4" /> Invite
-      </Button>
+      {/* Search Bar */}
+      <SearchInput />
+      {/* <div className="gap-2 items-center border rounded-md p-1 lg:flex md:flex hidden">
+      <Search className="h-4 w-4" />
+      <input
+        type="text"
+        placeholder="Search"
+        className="outline-none flex-grow bg-transparent rounded-md"
+      />
+    </div> */}
+
+      {/* User Profile Button or Skeleton */}
+      {!isLoaded ? (
+        <Skeleton className="h-8 w-8 rounded-full" />
+      ) : (
+        <UserButton afterSignOutUrl="/" />
+      )}
+
+      {/* Invite Button */}
+      {organization && (
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="gap-1 flex text-sm h-8 hover:bg-gray-700 bg-black">
+              <Plus className="h-4 w-4 mr-1" />
+              Invite
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="p-0 bg-transparent border-none lg:max-w-[880px] pl-6">
+            <OrganizationProfile routing="hash" />
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   );
 }

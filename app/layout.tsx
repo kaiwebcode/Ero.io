@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ConvexClientProvider } from "./ConvexClientProvider";
-import { Toaster } from "react-hot-toast";
+import { ConvexClientProvider } from "@/providers/convex-client-proder";
+import { Toaster } from "@/components/ui/sonner";
+import { ModalProvider } from "@/providers/modal-provider";
+// import { Toaster } from "react-hot-toast";
 // import { ToastContainer } from "react-toastify";
 // import { Toaster } from "@/components/ui/sonner";
 
@@ -33,8 +35,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ConvexClientProvider>
+          <Toaster position="bottom-right" />
+          <ModalProvider />
           {children}
-          <Toaster />
         </ConvexClientProvider>
       </body>
     </html>
