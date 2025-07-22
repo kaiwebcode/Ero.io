@@ -265,13 +265,9 @@ export const CanvasInner = ({ boardId }: CanvasProps) => {
   );
 
   const onWheel = useCallback((e: React.WheelEvent) => {
-    // console.log({
-    //   x: e.deltaX,
-    //   y: e.deltaY,
-    // });
     setCamera((camera) => ({
-      x: camera.x - e.deltaX,
-      y: camera.y - e.deltaY,
+      x: camera.x - (e.shiftKey ? e.deltaY : e.deltaX),
+      y: camera.y - (e.shiftKey ? 0 : e.deltaY),
     }));
   }, []);
 
@@ -415,17 +411,27 @@ export const CanvasInner = ({ boardId }: CanvasProps) => {
   const deleteLayers = useDeleteLayers();
 
   useEffect(() => {
+    const speed = 50;
     function onKeyDown(e: KeyboardEvent) {
+      //    switch (e.key) {
+      //     case "Backspace":
+      //     // e.preventDefault(); // prevent browser from navigating back
+      //     deleteLayers();
+      //     break;
+      //   };
 
-    //    switch (e.key) {
-    //     case "Backspace":
-    //     // e.preventDefault(); // prevent browser from navigating back
-    //     deleteLayers();
-    //     break;
-    //   };
-      
+      if (e.key === "ArrowRight") {
+        setCamera((c) => ({ ...c, x: c.x - speed }));
+      } else if (e.key === "ArrowLeft") {
+        setCamera((c) => ({ ...c, x: c.x + speed }));
+      } else if (e.key === "ArrowUp") {
+        setCamera((c) => ({ ...c, y: c.y + speed }));
+      } else if (e.key === "ArrowDown") {
+        setCamera((c) => ({ ...c, y: c.y - speed }));
+      }
+
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
-        e.preventDefault(); // Optional: prevent browser's default undo   
+        e.preventDefault(); // Optional: prevent browser's default undo
         if (e.shiftKey) {
           history.redo(); // <-- CALL redo
         } else {
