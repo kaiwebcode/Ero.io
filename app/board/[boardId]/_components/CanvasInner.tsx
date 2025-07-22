@@ -446,6 +446,43 @@ export const CanvasInner = ({ boardId }: CanvasProps) => {
     };
   }, [deleteLayers, history]);
 
+   // Add this to your component
+  useEffect(() => {
+    let lastTouchX = 0;
+    let lastTouchY = 0;
+
+    function onTouchMove(e: TouchEvent) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - lastTouchX;
+        const deltaY = touch.clientY - lastTouchY;
+        setCamera((camera) => ({
+          x: camera.x + deltaX,
+          y: camera.y + deltaY,
+        }));
+        lastTouchX = touch.clientX;
+        lastTouchY = touch.clientY;
+      }
+    }
+
+    function onTouchStart(e: TouchEvent) {
+      if (e.touches.length === 2) {
+        lastTouchX = e.touches[0].clientX;
+        lastTouchY = e.touches[0].clientY;
+      }
+    }
+
+    window.addEventListener("touchstart", onTouchStart, { passive: false });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
+
+    return () => {
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+    };
+  }, []);
+
+
   return (
     <main className="h-screen w-full relative bg-neutral-100 touch-none">
       <Info boardId={boardId} />
